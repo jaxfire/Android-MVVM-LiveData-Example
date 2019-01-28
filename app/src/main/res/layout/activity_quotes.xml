@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/textView_quotes"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="5"
+		android:padding="16dp"
+		android:textSize="22sp"
+		android:textStyle="bold"
+		android:text="Hello World!"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="2"
+		android:orientation="horizontal">
+
+		<LinearLayout
+			android:layout_width="0dp"
+			android:layout_weight="3"
+			android:layout_height="match_parent"
+			android:orientation="vertical">
+
+			<EditText
+				android:id="@+id/editText_quote"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="22sp"
+				android:hint="Quote"/>
+
+			<EditText
+				android:id="@+id/editText_author"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:textSize="22sp"
+				android:hint="Author"/>
+
+		</LinearLayout>
+
+		<Button
+			android:id="@+id/button_add_quote"
+			android:layout_width="0dp"
+			android:layout_weight="1"
+			android:layout_height="match_parent"
+			android:layout_marginTop="8dp"
+			android:layout_marginRight="8dp"
+			android:layout_marginLeft="8dp"
+			android:text="Add Quote"/>
+
+	</LinearLayout>
+
+	<View
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="2"/>
+
+</LinearLayout>
