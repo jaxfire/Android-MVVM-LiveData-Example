@@ -4,7 +4,6 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import com.jaxfire.mvvmexample.R
 import com.jaxfire.mvvmexample.data.Quote
 import com.jaxfire.mvvmexample.utilities.InjectorUtils
@@ -26,7 +25,7 @@ class QuotesActivity : AppCompatActivity() {
 
     private fun initialiseUi() {
 
-        viewModel.getQuotes().observe(this, Observer {
+        viewModel.getQuotesLiveData().observe(this, Observer {
             updateAdapter()
         })
 
