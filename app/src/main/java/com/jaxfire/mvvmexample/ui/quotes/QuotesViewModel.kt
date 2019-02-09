@@ -13,7 +13,7 @@ class QuotesViewModel(private val quoteRepository: QuoteRepository) : ViewModel(
 
     fun getFilteredQuotes(): List<Quote>? {
         return if (filteredByActive) {
-            getQuotes().value?.filter { it -> it.author.contains("A") }
+            getQuotes().value?.filter { it -> it.author.contains("A", ignoreCase = true) }
         } else {
             getQuotes().value
         }
