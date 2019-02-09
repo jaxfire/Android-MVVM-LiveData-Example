@@ -44,15 +44,12 @@ class QuotesActivity : AppCompatActivity() {
     }
 
     private fun updateAdapter() {
-        Log.d("jim", "Updating RecyclerView adapter")
-
-        val quotes = viewModel.getFilteredQuotes()
 
         // RECYCLERVIEW LOGIC
         // adapter.setWords(words)
 
         val stringBuilder = StringBuilder()
-        quotes?.forEach { quote ->
+        viewModel.getFilteredQuotes()?.forEach { quote ->
             stringBuilder.append("$quote\n\n")
         }
         textView_quotes.text = stringBuilder.toString()
