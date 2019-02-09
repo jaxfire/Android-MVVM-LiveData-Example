@@ -18,4 +18,6 @@ class FakeQuoteDao {
     }
 
     fun getQuotes() = quotes as LiveData<List<Quote>>
+
+    fun getFilteredQuotes() = quoteList.filter { it.author.contains("A") }
 }
