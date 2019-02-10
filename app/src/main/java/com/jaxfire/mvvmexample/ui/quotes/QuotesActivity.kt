@@ -13,6 +13,9 @@ class QuotesActivity : AppCompatActivity() {
 
     private lateinit var viewModel: QuotesViewModel
 
+    // TODO: This will be in the recyclerview's adapter
+    private var isFiltered = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
@@ -25,8 +28,8 @@ class QuotesActivity : AppCompatActivity() {
 
     private fun initialiseUi() {
 
-        viewModel.getQuotesLiveData().observe(this, Observer {
-            updateAdapter()
+        viewModel.getQuotes().observe(this, Observer { quotes ->
+            setData(quotes)
         })
 
         button_add_quote.setOnClickListener {
@@ -37,18 +40,22 @@ class QuotesActivity : AppCompatActivity() {
         }
 
         button_filter.setOnClickListener {
-            viewModel.switchFilter()
-            updateAdapter()
+            // TODO: adapter.toggleFilter())
+            isFiltered = !isFiltered
+            setData(viewModel.getQuotes().value)
         }
     }
 
-    private fun updateAdapter() {
 
-        // RECYCLERVIEW LOGIC
-        // adapter.setWords(words)
+    // This will be in the recyclerview's adapter
+    private fun setData(quotes: List<Quote>?) {
 
+        // Apply filter
+        if (isFiltered) quotes?.filter { it.author.contains("A", ignoreCase = true) }
+
+        // Update UI - This would be notifyDataSetChanged()
         val stringBuilder = StringBuilder()
-        viewModel.getFilteredQuotes()?.forEach { quote ->
+        quotes?.forEach { quote ->
             stringBuilder.append("$quote\n\n")
         }
         textView_quotes.text = stringBuilder.toString()

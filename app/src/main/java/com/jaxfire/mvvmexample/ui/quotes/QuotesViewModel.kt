@@ -9,9 +9,9 @@ class QuotesViewModel(private val quoteRepository: QuoteRepository) : ViewModel(
 
     var filteredByActive = false
 
-    fun getQuotesLiveData() = quoteRepository.getQuotes()
+    fun getQuotes() = quoteRepository.getQuotes()
 
-    fun getFilteredQuotes() = getQuotesLiveData().value?.filter(if (filteredByActive) filterLetterA else noFilter)
+    fun getFilteredQuotes() = getQuotes().value?.filter(if (filteredByActive) filterLetterA else noFilter)
 
     fun addQuote(quote: Quote) = quoteRepository.addQuote(quote)
 
