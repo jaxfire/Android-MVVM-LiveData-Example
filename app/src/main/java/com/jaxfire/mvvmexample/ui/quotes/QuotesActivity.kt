@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.jaxfire.mvvmexample.R
 import com.jaxfire.mvvmexample.data.Quote
 import com.jaxfire.mvvmexample.utilities.InjectorUtils
@@ -49,15 +50,16 @@ class QuotesActivity : AppCompatActivity() {
 
     // This will be in the recyclerview's adapter
     private fun setData(quotes: List<Quote>?) {
-
-        // Apply filter
-        if (isFiltered) quotes?.filter { it.author.contains("A", ignoreCase = true) }
-
         // Update UI - This would be notifyDataSetChanged()
+        // Apply filter. This would be the 'active' property of a rocket.
         val stringBuilder = StringBuilder()
-        quotes?.forEach { quote ->
+        quotes?.filter(if (isFiltered) filterLetterA else noFilter)?.forEach { quote ->
             stringBuilder.append("$quote\n\n")
         }
         textView_quotes.text = stringBuilder.toString()
     }
+
+    // Various filters could be place in a map and the keys used to populate the filter UI menu
+    val noFilter: (Quote) -> Boolean = { true }
+    val filterLetterA: (Quote) -> Boolean = { it.author.contains("A", ignoreCase = true) }
 }
